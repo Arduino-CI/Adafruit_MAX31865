@@ -17,6 +17,13 @@
 #ifndef ADAFRUIT_MAX31865_H
 #define ADAFRUIT_MAX31865_H
 
+#ifdef ARDUINO_CI
+#define Adafruit_MAX31865_CI Adafruit_MAX31865
+#include <WString.h>
+#else
+#define Adafruit_MAX31865_Base Adafruit_MAX31865
+#endif
+
 #define MAX31865_CONFIG_REG 0x00
 #define MAX31865_CONFIG_BIAS 0x80
 #define MAX31865_CONFIG_MODEAUTO 0x40
@@ -61,11 +68,11 @@ typedef enum max31865_numwires {
 } max31865_numwires_t;
 
 /*! Interface class for the MAX31865 RTD Sensor reader */
-class Adafruit_MAX31865 {
+class Adafruit_MAX31865_Base {
 public:
-  Adafruit_MAX31865(int8_t spi_cs, int8_t spi_mosi, int8_t spi_miso,
+  Adafruit_MAX31865_Base(int8_t spi_cs, int8_t spi_mosi, int8_t spi_miso,
                     int8_t spi_clk);
-  Adafruit_MAX31865(int8_t spi_cs);
+  Adafruit_MAX31865_Base(int8_t spi_cs);
 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);
 
@@ -79,6 +86,8 @@ public:
   void enableBias(bool b);
 
   float temperature(float RTDnominal, float refResistor);
+
+  virtual String className() const { return "Adafruit_MAX3186_Base"; }
 
 private:
   Adafruit_SPIDevice spi_dev;
