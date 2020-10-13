@@ -1,6 +1,0 @@
-sudo: false
-language: ruby
-before_install: gem install bundler
-script:
-  - bundle install
-  - bundle exec arduino_ci_remote.rb
