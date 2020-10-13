@@ -73,6 +73,8 @@ public:
                      BitOrder dataOrder = SPI_BITORDER_MSBFIRST,
                      uint8_t dataMode = SPI_MODE0);
 
+  ~Adafruit_SPIDevice();
+
   bool begin(void);
   bool read(uint8_t *buffer, size_t len, uint8_t sendvalue = 0xFF);
   bool write(uint8_t *buffer, size_t len, uint8_t *prefix_buffer = NULL,
