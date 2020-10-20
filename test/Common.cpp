@@ -1,6 +1,7 @@
 #include <bitset>
 #include <iostream>
 #include <vector>
+#include <assert.h> 
 
 #include "Arduino.h"
 #include "ArduinoUnitTests.h"
