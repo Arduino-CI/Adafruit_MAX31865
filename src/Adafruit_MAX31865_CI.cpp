@@ -14,10 +14,8 @@ Adafruit_MAX31865_CI::Adafruit_MAX31865_CI(int8_t spi_cs, int8_t spi_mosi,
 Adafruit_MAX31865_CI::Adafruit_MAX31865_CI(int8_t spi_cs)
     : Adafruit_MAX31865_Base(spi_cs) {}
       
-
 bool Adafruit_MAX31865_CI::begin(max31865_numwires_t wires) {
-  Adafruit_MAX31865_Base::begin(wires);
-  return true;
+  return Adafruit_MAX31865_Base::begin(wires);
 }
 
 uint8_t Adafruit_MAX31865_CI::readFault(void) {
