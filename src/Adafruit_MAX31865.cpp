@@ -34,7 +34,7 @@
 /**************************************************************************/
 //
 Adafruit_MAX31865_Base::Adafruit_MAX31865_Base(int8_t spi_cs, int8_t spi_mosi,
-                                     int8_t spi_miso, int8_t spi_clk)
+                                               int8_t spi_miso, int8_t spi_clk)
     : spi_dev(spi_cs, spi_clk, spi_miso, spi_mosi, 1000000,
               SPI_BITORDER_MSBFIRST, SPI_MODE1) {}
 
@@ -256,7 +256,7 @@ uint16_t Adafruit_MAX31865_Base::readRegister16(uint8_t addr) {
 }
 
 void Adafruit_MAX31865_Base::readRegisterN(uint8_t addr, uint8_t buffer[],
-                                      uint8_t n) {
+                                           uint8_t n) {
   addr &= 0x7F; // make sure top bit is not set
 
   spi_dev.write_then_read(&addr, 1, buffer, n);

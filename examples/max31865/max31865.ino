@@ -1,6 +1,6 @@
-/*************************************************** 
+/***************************************************
   This is a library for the Adafruit PT100/P1000 RTD Sensor w/MAX31865
- 
+
   Designed specifically to work with the Adafruit RTD Sensor
   ----> https://www.adafruit.com/products/3328
 
@@ -34,23 +34,24 @@ void setup() {
   thermo.begin(MAX31865_3WIRE); // set to 2WIRE or 4WIRE as necessary
 }
 
-
 void loop() {
   uint16_t rtd = thermo.readRTD();
 
-  Serial.print("RTD value: "); Serial.println(rtd);
+  Serial.print("RTD value: ");
+  Serial.println(rtd);
   float ratio = rtd;
   ratio /= 32768;
-  Serial.print("Ratio = "); Serial.println(ratio,8);
-  Serial.print("Resistance = "); 
-  Serial.println(RREF*ratio,8);
-  Serial.print("Temperature = "); 
+  Serial.print("Ratio = ");
+  Serial.println(ratio, 8);
+  Serial.print("Resistance = ");
+  Serial.println(RREF * ratio, 8);
+  Serial.print("Temperature = ");
   Serial.println(thermo.temperature(RNOMINAL, RREF));
 
   // Check and print any faults
   uint8_t fault = thermo.readFault();
   if (fault) {
-    Serial.print("Fault 0x"); 
+    Serial.print("Fault 0x");
     Serial.println(fault, HEX);
     if (fault & MAX31865_FAULT_HIGHTHRESH) {
       Serial.println("RTD High Threshold");

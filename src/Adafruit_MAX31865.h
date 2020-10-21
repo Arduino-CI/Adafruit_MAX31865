@@ -71,7 +71,7 @@ typedef enum max31865_numwires {
 class Adafruit_MAX31865_Base {
 public:
   Adafruit_MAX31865_Base(int8_t spi_cs, int8_t spi_mosi, int8_t spi_miso,
-                    int8_t spi_clk);
+                         int8_t spi_clk);
   Adafruit_MAX31865_Base(int8_t spi_cs);
 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);

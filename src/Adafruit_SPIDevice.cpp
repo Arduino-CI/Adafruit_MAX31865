@@ -70,9 +70,7 @@ Adafruit_SPIDevice::Adafruit_SPIDevice(int8_t cspin, int8_t sckpin,
   _spi = NULL;
 }
 
-Adafruit_SPIDevice::~Adafruit_SPIDevice(){
-  delete _spiSetting;
-}
+Adafruit_SPIDevice::~Adafruit_SPIDevice() { delete _spiSetting; }
 
 /*!
  *    @brief  Initializes SPI bus and sets CS pin high

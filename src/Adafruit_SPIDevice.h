@@ -27,7 +27,7 @@ typedef enum _BitOrder {
   SPI_BITORDER_LSBFIRST = SPI_LSBFIRST,
 } BitOrder;
 
-#elif  defined(ARDUINO_CI)
+#elif defined(ARDUINO_CI)
 
 typedef enum _BitOrder {
   SPI_BITORDER_MSBFIRST = MSBFIRST,
