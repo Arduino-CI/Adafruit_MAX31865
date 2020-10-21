@@ -7,72 +7,41 @@
 #include "ArduinoUnitTests.h"
 #include "Adafruit_MAX31865_CI.h"
 
-// The value of the Rref resistor. Use 430.0 for PT100 and 4300.0 for PT1000
-#define RREF      430.0
-// The 'nominal' 0-degrees-C resistance of the sensor
-// 100.0 for PT100, 1000.0 for PT1000
-#define RNOMINAL  100.0
-
-const byte rs = 1;
-const byte rw = 2;
-const byte enable = 3;
-const byte d0 = 10;
-const byte d1 = 11;
-const byte d2 = 12;
-const byte d3 = 13;
-const byte d4 = 14;
-const byte d5 = 15;
-const byte d6 = 16;
-const byte d7 = 17;
+const byte ss = 10;
+const byte mosi = 11;
+const byte miso = 12;
+const byte sck = 13;
 
 class BitCollector : public DataStreamObserver {
 private:
-  bool fourBitMode;
   bool showData;
   vector<int> pinLog;
   GodmodeState *state;
 
 public:
-  BitCollector(bool showData = false, bool fourBitMode = true)
+  BitCollector(bool showData = false)
       : DataStreamObserver(false, false) {
-    this->fourBitMode = fourBitMode;
     this->showData = showData;
     state = GODMODE();
     state->reset();
-    state->digitalPin[enable].addObserver("thermo", this);
+    state->digitalPin[sck].addObserver("thermo", this);
+    // std::cout << "BitCollector()" <<  std::endl;
   }
 
-  ~BitCollector() { state->digitalPin[enable].removeObserver("thermo"); }
+  ~BitCollector() { state->digitalPin[sck].removeObserver("thermo"); }
 
   virtual void onBit(bool aBit) {
-    if (aBit) {
+    // std::cout << "onBit()" <<  std::endl;
+    if (aBit && !state->digitalPin[ss]) {
       int value = 0;
-      value = (value << 1) + state->digitalPin[rs];
-      value = (value << 1) + state->digitalPin[rw];
-      value = (value << 1) + state->digitalPin[d7];
-      value = (value << 1) + state->digitalPin[d6];
-      value = (value << 1) + state->digitalPin[d5];
-      value = (value << 1) + state->digitalPin[d4];
-      value = (value << 1) + state->digitalPin[d3];
-      value = (value << 1) + state->digitalPin[d2];
-      value = (value << 1) + state->digitalPin[d1];
-      value = (value << 1) + state->digitalPin[d0];
+      value = (value << 1) + state->digitalPin[mosi];
+      value = (value << 1) + state->digitalPin[miso];
       pinLog.push_back(value);
       if (showData) {
-        std::cout.width(5);
-        std::cout << std::right << value << " : " << ((value >> 9) & 1) << "  "
-                  << ((value >> 8) & 1) << "  ";
-        if (fourBitMode) {
-          std::bitset<4> bits((value >> 4) & 0x0F);
-          if ((pinLog.size() - 1) % 2) {
-            std::cout << "    ";
-          }
-          std::cout << bits;
-        } else {
-          std::bitset<8> bits(value & 0xFF);
-          std::cout << bits;
-        }
-        std::cout << std::endl;
+        // std::cout.width(2);
+        // std::bitset<2> bits(value & 0xFF);
+        std::cout << value << ", ";
+        // std::cout << std::endl;
       }
     }
   }
@@ -93,29 +62,27 @@ public:
 };
 
 unittest(begin) {
-  //Implementation Not Finnished
-  vector<int> expected{};
-  Adafruit_MAX31865_Test thermo(d4, d5, d6, d7);
-  bool testBegin = thermo.begin(MAX31865_3WIRE);
-  assertTrue(testBegin);
-
-}
-
-unittest(readRTD) {
-  //Not Yet Implemented
-  int expected = 0;
-  Adafruit_MAX31865_Test thermo(d4, d5, d6, d7);
+  std::cout << std::endl;
+  vector<int> expected{2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
+  BitCollector pinValues(false);
+  Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  int testReadRTD = thermo.readRTD();
-  assert(testReadRTD == expected);
+  assertTrue(pinValues.isEqualTo(expected));
+  std::cout << std::endl;
 }
 
 unittest(get_temp) {
-  float rref = 430.0;
-  float rNominal = 100.0;
-  float expectedTemperature = -242.02;
-  Adafruit_MAX31865_Test thermo(d4, d5, d6, d7);
+  std::cout << std::endl;
+  vector<int> expected{0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+  Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  float testTemperature = thermo.temperature(rNominal, rref);
-  assert(testTemperature == expectedTemperature);
+  BitCollector pinValues(false);
+  thermo.temperature(100.0, 430.0);
+  assertTrue(pinValues.isEqualTo(expected));
+  std::cout << std::endl;
 }
+
+//Purposely Didn't Include Base Level Tests for Read Fault, Clear Fault, and Read Resistance in Low Level Tests 
+//because base value will not be the same as CI value because the Base value set fault is an empty register and 
+//the CI fault is initiallized to 0. The Max31865 Device will suply these values at runtime therefore testing is
+//not adequeate in these areas anyways. With high level tests these tests should still be comprehensive enough. 

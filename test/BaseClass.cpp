@@ -2,8 +2,10 @@
 #include "Common.cpp"
 
 unittest(testingClassName) {
-  Adafruit_MAX31865_Test thermo(d4, d5, d6, d7);
+  std::cout << std::endl;
+  Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   assertEqual("Adafruit_MAX3186_Base", thermo.className());
+  std::cout << std::endl;
 }
 
 unittest_main()

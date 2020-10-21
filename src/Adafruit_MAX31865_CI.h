@@ -15,14 +15,16 @@ public:
   void clearFault(void);
   uint16_t readRTD();
 
-  void setWires(max31865_numwires_t wires);
-  void autoConvert(bool b);
-  void enable50Hz(bool b);
-  void enableBias(bool b);
-
   float temperature(float RTDnominal, float refResistor);
 
   virtual String className() const { return "Adafruit_MAX3186_CI"; }
+
+  void setRTD(uint16_t newValue) { rtd = newValue; }
+  void setFault(uint8_t newFault){ fault = newFault; }  
+
+  private:
+    uint16_t rtd;
+    uint8_t fault;
 };
 
 #endif
