@@ -24,7 +24,6 @@ unittest(readRTD_high) {
   uint16_t testRTD = thermo.readRTD();
   assert(testRTD == expectedRTD);
   std::cout << std::endl;
-
 }
 
 unittest(getTemp_high) {
@@ -32,8 +31,8 @@ unittest(getTemp_high) {
   float expectedTemp = -242.02;
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  float testTemp =  thermo.temperature(100.0, 430.0);
-  assert(testTemp ==  expectedTemp);
+  float testTemp = thermo.temperature(100.0, 430.0);
+  assert(testTemp == expectedTemp);
   std::cout << std::endl;
 }
 
@@ -43,7 +42,7 @@ unittest(readFault_high) {
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   thermo.setFault(expectedFault);
-  uint8_t testFault =  thermo.readFault();
+  uint8_t testFault = thermo.readFault();
   assert(testFault == expectedFault);
   std::cout << std::endl;
 }

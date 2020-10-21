@@ -8,7 +8,7 @@ public:
   Adafruit_MAX31865_CI(int8_t spi_cs, int8_t spi_mosi, int8_t spi_miso,
                     int8_t spi_clk);
   Adafruit_MAX31865_CI(int8_t spi_cs);
-
+ 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);
 
   uint8_t readFault(void);
