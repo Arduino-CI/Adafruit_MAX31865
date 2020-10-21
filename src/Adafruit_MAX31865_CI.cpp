@@ -1,5 +1,5 @@
 #include "Adafruit_MAX31865_CI.h"
-#include "Adafruit_MAX31865.h"
+#ifdef ARDUINO_CI
 #ifdef __AVR
 #include <avr/pgmspace.h>
 #elif defined(ESP8266)
@@ -39,3 +39,5 @@ uint16_t Adafruit_MAX31865_CI::readRTD(void) {
   // return Adafruit_MAX31865_Base::readRTD();
   return rtd;
 }
+
+#endif
