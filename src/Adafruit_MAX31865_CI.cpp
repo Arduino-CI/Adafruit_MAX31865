@@ -1,4 +1,5 @@
 #include "Adafruit_MAX31865_CI.h"
+#include "Adafruit_MAX31865.h"
 #ifdef __AVR
 #include <avr/pgmspace.h>
 #elif defined(ESP8266)
