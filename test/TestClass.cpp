@@ -38,11 +38,13 @@ unittest(getTemp_high) {
 
 unittest(readFault_high) {
   std::cout << std::endl;
-  uint8_t expectedFault = 1;
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  thermo.setFault(expectedFault);
+  uint8_t expectedFault = 1;
   uint8_t testFault = thermo.readFault();
+  assertEqual(0, testFault);
+  thermo.setFault(expectedFault);
+  testFault = thermo.readFault();
   assert(testFault == expectedFault);
   std::cout << std::endl;
 }

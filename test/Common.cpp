@@ -93,10 +93,3 @@ unittest(get_temp) {
   assertTrue(pinValues.isEqualTo(expected));
   std::cout << std::endl;
 }
-
-// Purposely Didn't Include Base Level Tests for Read Fault, Clear Fault, and
-// Read Resistance in Low Level Tests because base value will not be the same as
-// CI value because the Base value set fault is an empty register and the CI
-// fault is initiallized to 0. The Max31865 Device will suply these values at
-// runtime therefore testing is not adequeate in these areas anyways. With high
-// level tests these tests should still be comprehensive enough.
