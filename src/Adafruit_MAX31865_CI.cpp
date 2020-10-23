@@ -22,13 +22,9 @@ bool Adafruit_MAX31865_CI::begin(max31865_numwires_t wires) {
   return Adafruit_MAX31865_Base::begin(wires);
 }
 
-uint8_t Adafruit_MAX31865_CI::readFault(void) {
-  return fault;
-}
+uint8_t Adafruit_MAX31865_CI::readFault(void) { return fault; }
 
-void Adafruit_MAX31865_CI::clearFault(void) {
-  fault = 0;
-}
+void Adafruit_MAX31865_CI::clearFault(void) { fault = 0; }
 
 float Adafruit_MAX31865_CI::temperature(float RTDnominal, float refResistor) {
   return Adafruit_MAX31865_Base::temperature(RTDnominal, refResistor);
