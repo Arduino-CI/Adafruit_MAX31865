@@ -23,4 +23,3 @@ unittest:
 compile:
   platforms:
     - mega2560
-    
