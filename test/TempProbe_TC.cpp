@@ -8,9 +8,9 @@
 #endif
 
 // Adafruit MAX31865
-// This device is an interface and sensor between a thermocouple (temperature
-// sensor). With The Adafruit MAX31865 you can either read a resistance, or a
-// fault.
+// The Adafruit MAX31865 is an external device that connects to a thermocouple (temperature
+// sensor), and has pins that can be used to read a resistance, temperature, or fault. The 
+// associated library has a simple API as described below.
 //
 // Device I/O:
 // This device has 5 pins: Vin (3V or 5V powersupply, the same as the
