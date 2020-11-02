@@ -59,6 +59,7 @@
 #include "WProgram.h"
 #endif
 
+// NOTE: Modify Adafruit_SPIDevice.h:36 = #if (defined(__AVR__) || defined(TEENSYDUINO)) && !defined(ARDUINO_CI)
 #include <Adafruit_SPIDevice.h>
 
 typedef enum max31865_numwires {

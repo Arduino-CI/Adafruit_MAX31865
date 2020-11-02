@@ -10,6 +10,7 @@ platforms:
         - __AVR_ATmega2560__
         # added this line
         - ARDUINO_CI
+        - __AVR__
       warnings:
       flags:
 
@@ -19,7 +20,11 @@ unittest:
   testfiles:
     reject:
       - "Common.cpp"
+  libraries:
+    - "Adafruit BusIO"
 
 compile:
   platforms:
     - mega2560
+  libraries:
+    - "Adafruit BusIO"
