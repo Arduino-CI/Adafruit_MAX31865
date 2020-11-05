@@ -59,9 +59,11 @@
 #include "WProgram.h"
 #endif
 
-// NOTE: Modify Adafruit_SPIDevice.h:36 = #if (defined(__AVR__) || defined(TEENSYDUINO)) && !defined(ARDUINO_CI)
-// With current arduino ci framework __AVR__ compiles seperately. This means that __AVR doesn't have 
-// access to a library that it needs: BUSIO_USE_FAST_PINIO. THis is related to arduino_ci#193. 
+// NOTE: Modify Adafruit_SPIDevice.h:36 = #if (defined(__AVR__) ||
+// defined(TEENSYDUINO)) && !defined(ARDUINO_CI) With current arduino ci
+// framework __AVR__ compiles seperately. This means that __AVR doesn't have
+// access to a library that it needs: BUSIO_USE_FAST_PINIO. THis is related to
+// arduino_ci#193.
 #include <Adafruit_SPIDevice.h>
 
 typedef enum max31865_numwires {
