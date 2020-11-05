@@ -24,23 +24,18 @@ public:
     state = GODMODE();
     state->reset();
     state->digitalPin[sck].addObserver("thermo", this);
-    // std::cout << "BitCollector()" <<  std::endl;
   }
 
   ~BitCollector() { state->digitalPin[sck].removeObserver("thermo"); }
 
   virtual void onBit(bool aBit) {
-    // std::cout << "onBit()" <<  std::endl;
     if (aBit && !state->digitalPin[ss]) {
       int value = 0;
       value = (value << 1) + state->digitalPin[mosi];
       value = (value << 1) + state->digitalPin[miso];
       pinLog.push_back(value);
       if (showData) {
-        // std::cout.width(2);
-        // std::bitset<2> bits(value & 0xFF);
         std::cout << value << ", ";
-        // std::cout << std::endl;
       }
     }
   }
@@ -61,7 +56,6 @@ public:
 };
 
 unittest(begin) {
-  std::cout << std::endl;
   vector<int> expected{2, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                        0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -73,11 +67,9 @@ unittest(begin) {
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   assertTrue(pinValues.isEqualTo(expected));
-  std::cout << std::endl;
 }
 
 unittest(get_temp) {
-  std::cout << std::endl;
   vector<int> expected{0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0,
                        0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0,
@@ -91,5 +83,4 @@ unittest(get_temp) {
   BitCollector pinValues(false);
   thermo.temperature(100.0, 430.0);
   assertTrue(pinValues.isEqualTo(expected));
-  std::cout << std::endl;
 }
