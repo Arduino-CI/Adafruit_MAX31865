@@ -7,10 +7,10 @@ unittest(testingClassName) {
 }
 
 // The following tests are in BaseClass.cpp instead of Common.cpp
-// because initial input values for resistance and fault from the 
-// MAX31865 are initialized differently for testing purposes. 
-// Since we don't have actual I/O from the device, we need to 
-// initialize values in testing so we can manually change 
+// because initial input values for resistance and fault from the
+// MAX31865 are initialized differently for testing purposes.
+// Since we don't have actual I/O from the device, we need to
+// initialize values in testing so we can manually change
 // them.
 
 unittest(read_RTD) {
