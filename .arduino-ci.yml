@@ -6,10 +6,10 @@ unittest:
     reject:
       - "Common.cpp"
   libraries:
-    - "Adafruit_BusIO"
+    - "Adafruit BusIO"
 
 compile:
   platforms:
     - mega2560
   libraries:
-    - "Adafruit_BusIO"
+    - "Adafruit BusIO"
