@@ -1,10 +1,10 @@
+#include <Arduino.h>
 #include <assert.h>
 #include <bitset>
 #include <iostream>
 #include <vector>
 
 #include "Adafruit_MAX31865_CI.h"
-#include "Arduino.h"
 #include "ArduinoUnitTests.h"
 
 const byte ss = 10;
