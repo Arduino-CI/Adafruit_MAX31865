@@ -14,10 +14,14 @@ unittest(begin_high) {
 
 unittest(readRTD_high) {
   uint16_t expectedRTD = 0;
+  uint16_t expectedSetRTD = 3;
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   uint16_t testRTD = thermo.readRTD();
   assert(testRTD == expectedRTD);
+  thermo.setRTD(expectedSetRTD);
+  testRTD = thermo.readRTD(); 
+  assert(testRTD == expectedSetRTD);
 }
 
 unittest(getTemp_high) {
@@ -40,11 +44,11 @@ unittest(readFault_high) {
 }
 
 unittest(clearFault_high) {
-  uint8_t setFault = 1;
+  uint8_t newFault = 1;
   uint8_t expectedFault = 0;
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  thermo.setFault(setFault);
+  thermo.setFault(newFault);
   thermo.clearFault();
   uint8_t testFault = thermo.readFault();
   assert(testFault == expectedFault);

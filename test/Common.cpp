@@ -3,9 +3,11 @@
 #include <iostream>
 #include <vector>
 
-#include "Adafruit_MAX31865_CI.h"
 #include "Arduino.h"
 #include "ArduinoUnitTests.h"
+#include "Adafruit_MAX31865_CI.h"
+
+
 
 const byte ss = 10;
 const byte mosi = 11;
@@ -63,7 +65,7 @@ unittest(begin) {
                        2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
-  BitCollector pinValues(false);
+  BitCollector pinValues(true);
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   assertTrue(pinValues.isEqualTo(expected));
@@ -80,7 +82,7 @@ unittest(get_temp) {
                        2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  BitCollector pinValues(false);
+  BitCollector pinValues(true);
   thermo.temperature(100.0, 430.0);
   assertTrue(pinValues.isEqualTo(expected));
 }

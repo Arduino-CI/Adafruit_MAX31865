@@ -1,5 +1,5 @@
 #include "Adafruit_MAX31865_CI.h"
-#ifdef ARDUINO_CI
+#ifdef MOCK_PINS_COUNT
 #ifdef __AVR
 #include <avr/pgmspace.h>
 #elif defined(ESP8266)
