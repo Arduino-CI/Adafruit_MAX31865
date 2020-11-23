@@ -1,6 +1,6 @@
 #pragma once
 #include <Adafruit_MAX31865.h>
-#ifdef ARDUINO_CI
+#ifdef MOCK_PINS_COUNT
 
 /*! Interface class for the MAX31865 RTD Sensor reader */
 class Adafruit_MAX31865_CI : Adafruit_MAX31865_Base {
