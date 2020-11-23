@@ -20,7 +20,7 @@ unittest(readRTD_high) {
   uint16_t testRTD = thermo.readRTD();
   assert(testRTD == expectedRTD);
   thermo.setRTD(expectedSetRTD);
-  testRTD = thermo.readRTD(); 
+  testRTD = thermo.readRTD();
   assert(testRTD == expectedSetRTD);
 }
 
