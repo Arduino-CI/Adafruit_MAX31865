@@ -1,0 +1,15 @@
+
+unittest:
+  platforms:
+    - mega2560
+  testfiles:
+    reject:
+      - "Common.cpp"
+  libraries:
+    - "Adafruit BusIO"
+
+compile:
+  platforms:
+    - mega2560
+  libraries:
+    - "Adafruit BusIO"
