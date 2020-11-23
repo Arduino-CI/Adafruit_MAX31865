@@ -36,7 +36,7 @@ public:
       value = (value << 1) + state->digitalPin[miso];
       pinLog.push_back(value);
       if (showData) {
-        std::cout << value << ", ";
+        std::cout << value << " ";
       }
     }
   }
@@ -64,7 +64,7 @@ unittest(begin) {
                        2, 2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2,
                        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2};
-  BitCollector pinValues(true);
+  BitCollector pinValues(false);
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   assertTrue(pinValues.isEqualTo(expected));
@@ -81,7 +81,7 @@ unittest(get_temp) {
                        2, 2, 2, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  BitCollector pinValues(true);
+  BitCollector pinValues(false);
   thermo.temperature(100.0, 430.0);
   assertTrue(pinValues.isEqualTo(expected));
 }

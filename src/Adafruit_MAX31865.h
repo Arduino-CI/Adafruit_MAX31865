@@ -17,8 +17,6 @@
 #ifndef ADAFRUIT_MAX31865_H
 #define ADAFRUIT_MAX31865_H
 
-<<<<<<< HEAD
-=======
 #if (ARDUINO >= 100)
 #include "Arduino.h"
 #else
@@ -32,7 +30,6 @@
 #define Adafruit_MAX31865_Base Adafruit_MAX31865
 #endif
 
->>>>>>> d45601170b38b2143eb02eaa4396d773e38c9a5f
 #define MAX31865_CONFIG_REG 0x00
 #define MAX31865_CONFIG_BIAS 0x80
 #define MAX31865_CONFIG_MODEAUTO 0x40
