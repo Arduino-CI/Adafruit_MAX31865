@@ -17,6 +17,22 @@
 #ifndef ADAFRUIT_MAX31865_H
 #define ADAFRUIT_MAX31865_H
 
+<<<<<<< HEAD
+=======
+#if (ARDUINO >= 100)
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
+
+#ifdef MOCK_PINS_COUNT
+#define Adafruit_MAX31865_CI Adafruit_MAX31865
+#include <WString.h>
+#else
+#define Adafruit_MAX31865_Base Adafruit_MAX31865
+#endif
+
+>>>>>>> d45601170b38b2143eb02eaa4396d773e38c9a5f
 #define MAX31865_CONFIG_REG 0x00
 #define MAX31865_CONFIG_BIAS 0x80
 #define MAX31865_CONFIG_MODEAUTO 0x40
@@ -46,24 +62,6 @@
 #define RTD_A 3.9083e-3
 #define RTD_B -5.775e-7
 
-#if (ARDUINO >= 100)
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
-
-#ifdef MOCK_PINS_COUNT
-#define Adafruit_MAX31865_CI Adafruit_MAX31865
-#include <WString.h>
-#else
-#define Adafruit_MAX31865_Base Adafruit_MAX31865
-#endif
-
-// NOTE: Modify Adafruit_SPIDevice.h:36 = #if (defined(__AVR__) ||
-// defined(TEENSYDUINO)) && !defined(MOCK_PINS_COUNT) With current arduino ci
-// framework __AVR__ compiles seperately. This means that __AVR doesn't have
-// access to a library that it needs: BUSIO_USE_FAST_PINIO. THis is related to
-// arduino_ci#193.
 #include <Adafruit_SPIDevice.h>
 
 typedef enum max31865_numwires {

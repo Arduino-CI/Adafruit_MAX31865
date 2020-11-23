@@ -1,13 +1,12 @@
+#include <Arduino.h>
 #include <assert.h>
 #include <bitset>
 #include <iostream>
 #include <vector>
 
-#include "Arduino.h"
+#include "Adafruit_MAX31865_CI.h"
 #include "ArduinoUnitTests.h"
 #include "Adafruit_MAX31865_CI.h"
-
-
 
 const byte ss = 10;
 const byte mosi = 11;
