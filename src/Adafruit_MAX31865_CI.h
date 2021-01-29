@@ -11,9 +11,9 @@ public:
 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);
 
-  uint8_t readFault(void);
-  void clearFault(void);
-  uint16_t readRTD();
+  void clearFault(void)  { fault = 0; }
+  uint8_t readFault(void) { return fault; }
+  uint16_t readRTD() { return rtd; }
 
   float temperature(float RTDnominal, float refResistor);
 
@@ -23,8 +23,8 @@ public:
   void setFault(uint8_t newFault) { fault = newFault; }
 
 private:
-  uint16_t rtd;
-  uint8_t fault;
+  uint16_t rtd = 0;
+  uint8_t fault = 0;
 };
 
 #endif
