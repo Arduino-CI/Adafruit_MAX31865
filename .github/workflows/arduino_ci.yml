@@ -8,5 +8,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Installing libraries needed for this project
+      - name: Install libraries
+        run: |
+          ls -alF $(bundle exec arduino_library_location.rb)
+          ./scripts/install_libraries.sh  
+          ls -alF $(bundle exec arduino_library_location.rb)
+
       - uses: actions/checkout@v2
       - uses: Arduino-CI/action@stable-1.x
