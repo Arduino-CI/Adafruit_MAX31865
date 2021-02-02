@@ -46,6 +46,9 @@ public:
     }
     for (int i = 0; i < pinLog.size(); ++i) {
       if (pinLog.at(i) != expected.at(i)) {
+        std::cerr << "pinLog.at(" << i << ") = " << pinLog.at(i)
+                  << " while expected.at(" << i << ") is " << expected.at(i)
+                  << std::endl;
         return false;
       }
     }
