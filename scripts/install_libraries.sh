@@ -1,5 +1,5 @@
 #!/bin/bash
-
+set -x
 # this script has two use cases
 # 1 - CI testing and local development of this library only (SHALLOW)
 # 2 - Development of this library AND the supporting libraries
