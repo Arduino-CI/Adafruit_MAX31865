@@ -11,7 +11,7 @@ public:
 
   bool begin(max31865_numwires_t x = MAX31865_2WIRE);
 
-  void clearFault(void)  { fault = 0; }
+  void clearFault(void) { fault = 0; }
   uint8_t readFault(void) { return fault; }
   uint16_t readRTD() { return rtd; }
 
