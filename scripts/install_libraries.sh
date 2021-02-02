@@ -1,20 +1,10 @@
 #!/bin/bash
+# arduino_ci runs this script in its GitHub Action because it is referenced by CUSTOM_INIT_SCRIPT
+# arduino_ci ensures that the script is run in the libraries directory
 
-# this script has two use cases
-# 1 - CI testing and local development of this library only (SHALLOW)
-# 2 - Development of this library AND the supporting libraries
-# comment this out if you want full depth for the supporting libraries (case 2)
 export SHALLOW='--depth 1 --branch master --single-branch '
-# use this if you started with SHALLOW and now want the full repository with history
+# If you want the full repository with history, execute the following
 # git fetch --unshallow
-
-# ensure we have `arduino_ci`
-bundle config --local path vendor/bundle
-bundle install
-
-# set up directories
-bundle exec ensure_arduino_installation.rb
-cd $(bundle exec arduino_library_location.rb)
 
 # add missing libraries
 export GITHUB="https://github.com/Arduino-CI"
