@@ -43,6 +43,9 @@ public:
   bool isEqualTo(const vector<int> &expected) {
     std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo()" << std::endl;
     if (pinLog.size() != expected.size()) {
+      std::cerr << "pinLog.size() = " << pinLog.size()
+                << " while expected.size()) is " << expected.size()
+                << std::endl;
       return false;
     }
     for (int i = 0; i < pinLog.size(); ++i) {
@@ -50,11 +53,13 @@ public:
         std::cerr << "pinLog.at(" << i << ") = " << pinLog.at(i)
                   << " while expected.at(" << i << ") is " << expected.at(i)
                   << std::endl;
-        std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo() returning false" << std::endl;
+        std::cout << __FILE__ << ':' << __LINE__
+                  << " isEqualTo() returning false" << std::endl;
         return false;
       }
     }
-    std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo() returning true" << std::endl;
+    std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo() returning true"
+              << std::endl;
     return true;
   }
 
