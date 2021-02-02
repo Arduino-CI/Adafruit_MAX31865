@@ -41,25 +41,14 @@ public:
   }
 
   bool isEqualTo(const vector<int> &expected) {
-    std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo()" << std::endl;
     if (pinLog.size() != expected.size()) {
-      std::cerr << "pinLog.size() = " << pinLog.size()
-                << " while expected.size()) is " << expected.size()
-                << std::endl;
       return false;
     }
     for (int i = 0; i < pinLog.size(); ++i) {
       if (pinLog.at(i) != expected.at(i)) {
-        std::cerr << "pinLog.at(" << i << ") = " << pinLog.at(i)
-                  << " while expected.at(" << i << ") is " << expected.at(i)
-                  << std::endl;
-        std::cout << __FILE__ << ':' << __LINE__
-                  << " isEqualTo() returning false" << std::endl;
         return false;
       }
     }
-    std::cout << __FILE__ << ':' << __LINE__ << " isEqualTo() returning true"
-              << std::endl;
     return true;
   }
 
@@ -77,7 +66,6 @@ unittest(begin) {
   BitCollector pinValues(false);
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
-  std::cout << __FILE__ << ':' << __LINE__ << " begin()" << std::endl;
   assertTrue(pinValues.isEqualTo(expected));
 }
 
@@ -94,6 +82,5 @@ unittest(get_temp) {
   thermo.begin(MAX31865_3WIRE);
   BitCollector pinValues(false);
   thermo.temperature(100.0, 430.0);
-  std::cout << __FILE__ << ':' << __LINE__ << " getTemp()" << std::endl;
   assertTrue(pinValues.isEqualTo(expected));
 }
