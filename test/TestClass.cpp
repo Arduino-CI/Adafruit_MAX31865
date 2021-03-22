@@ -69,6 +69,5 @@ unittest(set_temperature) {
   assertEqual(10266, thermo.readRTD());
   thermo.setTemperature(100);
   assertEqual(10554, thermo.readRTD());
-
 }
 unittest_main()
