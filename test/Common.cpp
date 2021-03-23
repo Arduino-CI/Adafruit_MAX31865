@@ -73,5 +73,5 @@ unittest(get_temp) {
   Adafruit_MAX31865_Test thermo(ss, mosi, miso, sck);
   thermo.begin(MAX31865_3WIRE);
   int temp = (int)thermo.temperature(100.0, 430.0);
-  assertEqual(temp, -242);
+  assertEqual(-242, temp);
 }

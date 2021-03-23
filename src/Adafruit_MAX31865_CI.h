@@ -19,8 +19,9 @@ public:
 
   virtual String className() const { return "Adafruit_MAX3186_CI"; }
 
-  void setRTD(uint16_t newValue) { rtd = newValue; }
   void setFault(uint8_t newFault) { fault = newFault; }
+  void setRTD(uint16_t newValue) { rtd = newValue; }
+  void setTemperature(float newTemp);
 
 private:
   uint16_t rtd = 0;
